@@ -11,6 +11,8 @@ namespace HayatKanali
         {
             // Web API configuration and services
 
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
