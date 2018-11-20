@@ -16,7 +16,7 @@ namespace HayatKanali.Controllers
 
         [Route("api/hastane/hastanegetir")]
         [HttpGet]
-        public IEnumerable<Hastane> HastaneleriGetir() => db.Hastaneler.Select(hastane => new Hastane
+        public IEnumerable<Hospital> HastaneleriGetir() => db.Hastaneler.Select(hastane => new Hospital
         {
             Id = hastane.Id,
             Ad = hastane.Ad,
@@ -28,7 +28,7 @@ namespace HayatKanali.Controllers
 
         [Route("api/hastane/hastanegetir/{id}")]
         [HttpGet]
-        public Hastane HastaneGetir(int id) => db.Hastaneler.Select(hastane => new Hastane
+        public Hospital HastaneGetir(int id) => db.Hastaneler.Select(hastane => new Hospital
         {
             Id = hastane.Id,
             Ad = hastane.Ad

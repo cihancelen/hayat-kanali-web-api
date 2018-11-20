@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HayatKanali.Models.DAL
 {
-    public class Hastane
+    public class Hospital
     {
         public int Id { get; set; }
         public string Ad { get; set; }

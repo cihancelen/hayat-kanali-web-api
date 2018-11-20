@@ -171,10 +171,12 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HastaneController.cs" />
+    <Compile Include="Controllers\UyeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Hastane.cs" />
+    <Compile Include="Models\DAL\Hospital.cs" />
+    <Compile Include="Models\DAL\User.cs" />
     <Compile Include="Models\ORM\Doktorlar.cs" />
     <Compile Include="Models\ORM\GenelAdmin.cs" />
     <Compile Include="Models\ORM\Hastalar.cs" />

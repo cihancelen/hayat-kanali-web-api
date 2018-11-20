@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using HayatKanali.Models.DAL;
+using HayatKanali.Models.ORM;
+using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +16,23 @@ namespace HayatKanali.App_Start
         {
             context.Validated();
         }
+
+        private string mail;
+        private string password;
+        Kullanicilar user;
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             //Domainler arası etkileşim ve kaynak paylaşımını sağlayan ve bir domainin bir başka domainin kaynağını kullanmasını sağlayan CORS ayarlarını set ediyoruz.
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             //Kullanıcının access_token alabilmesi için gerekli validation işlemlerini yapıyoruz.
-            if (context.UserName == "pearlq" && context.Password == "123")
+            using (HayatKanaliDB db = new HayatKanaliDB())
+            {
+                user = db.Kullanicilar.FirstOrDefault(u => u.Mail == mail && u.Parola == password);
+            }
+
+            if (context.UserName == user.Mail && context.Password == user.Parola)
             {
                 ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim("sub", context.UserName));
@@ -32,6 +44,12 @@ namespace HayatKanali.App_Start
             {
                 context.SetError("hata", "Kullanıcı adı veya şifre hatalı.");
             }
+        }
+
+        public void Login(string mail, string pass)
+        {
+            this.mail = mail;
+            this.password = pass;
         }
     }
 }
