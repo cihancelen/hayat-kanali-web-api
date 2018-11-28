@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HayatKanali.Models.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,6 @@ namespace HayatKanali.Controllers
 {
     public class UyeController : ApiController
     {
-
+        
     }
 }
