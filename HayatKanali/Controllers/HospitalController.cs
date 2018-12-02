@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace HayatKanali.Controllers
 {
     [Authorize]
-    public class HastaneController : ApiController
+    public class HospitalController : ApiController
     {
         HayatKanaliDB db = new HayatKanaliDB();
 

@@ -17,6 +17,7 @@ namespace HayatKanali.App_Start
             HttpConfiguration httpConfiguration = new HttpConfiguration();
             ConfigureOAuth(app);
             WebApiConfig.Register(httpConfiguration);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(httpConfiguration);
         }
 

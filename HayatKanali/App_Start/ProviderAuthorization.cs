@@ -1,10 +1,12 @@
-﻿using HayatKanali.Models.DAL;
+﻿using HayatKanali.Helpers;
+using HayatKanali.Models.DAL;
 using HayatKanali.Models.ORM;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -26,7 +28,9 @@ namespace HayatKanali.App_Start
                 var users = db.Kullanicilar.ToList();
                 var employees = db.Personeller.ToList();
 
-                if (db.Kullanicilar.Where(user => user.Mail == context.UserName && user.Parola == context.Password).FirstOrDefault() != null)
+                string pass = Crypto.GetMd5Hash(MD5.Create(), context.Password);
+
+                if (db.Kullanicilar.Where(user => user.Mail == context.UserName && user.Parola == pass).FirstOrDefault() != null)
                 {
                     ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
                     identity.AddClaim(new Claim("sub", context.UserName));

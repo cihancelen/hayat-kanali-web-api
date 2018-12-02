@@ -38,7 +38,7 @@ namespace HayatKanali.Models.ORM
         [Column(TypeName = "date")]
         public DateTime? DogumTarihi { get; set; }
 
-        [StringLength(30)]
+        [StringLength(50)]
         public string Parola { get; set; }
 
         public bool? SigaraAlkolKullanimi { get; set; }
@@ -46,6 +46,10 @@ namespace HayatKanali.Models.ORM
         public DateTime SonKanVermeTarihi { get; set; }
 
         public int? KanGrubuId { get; set; }
+
+        public int CityId { get; set; }
+
+        public string District { get; set; }
 
         public virtual KanGruplari KanGruplari { get; set; }
 
