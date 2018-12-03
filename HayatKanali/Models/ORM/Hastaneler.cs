@@ -41,6 +41,11 @@ namespace HayatKanali.Models.ORM
         [StringLength(150)]
         public string Mail { get; set; }
 
+        public int CityId { get; set; }
+
+        [StringLength(250)]
+        public string District { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Doktorlar> Doktorlar { get; set; }
 

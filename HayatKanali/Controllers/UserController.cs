@@ -27,7 +27,6 @@ namespace HayatKanali.Controllers
                 {
                     Ad = user.Name,
                     Soyad = user.Surname,
-                    Adres = user.Address,
                     CityId = user.CityId,
                     District = user.District,
                     DogumTarihi = user.Birthday,
@@ -65,7 +64,6 @@ namespace HayatKanali.Controllers
                     Id = u.Id,
                     Name = u.Ad,
                     Surname = u.Soyad,
-                    Address = u.Adres,
                     Birthday = u.DogumTarihi,
                     Email = u.Mail,
                     UsingSmokingAndAlcohol = u.SigaraAlkolKullanimi,

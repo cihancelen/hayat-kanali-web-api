@@ -12,26 +12,26 @@ namespace HayatKanali.Controllers
     [Authorize]
     public class HospitalController : ApiController
     {
-        HayatKanaliDB db = new HayatKanaliDB();
+        //HayatKanaliDB db = new HayatKanaliDB();
 
-        [Route("api/hastane/hastanegetir")]
-        [HttpGet]
-        public IEnumerable<Hospital> HastaneleriGetir() => db.Hastaneler.Select(hastane => new Hospital
-        {
-            Id = hastane.Id,
-            Ad = hastane.Ad,
-            Adres = hastane.Adres,
-            KullaniciAdi = hastane.KullaniciAdi,
-            Mail = hastane.Mail,
-            Telefon = hastane.Telefon 
-        }).ToList();
+        //[Route("api/hastane/hastanegetir")]
+        //[HttpGet]
+        //public IEnumerable<Hospital> HastaneleriGetir() => db.Hastaneler.Select(hastane => new Hospital
+        //{
+        //    Id = hastane.Id,
+        //    Ad = hastane.Ad,
+        //    Adres = hastane.Adres,
+        //    KullaniciAdi = hastane.KullaniciAdi,
+        //    Mail = hastane.Mail,
+        //    Telefon = hastane.Telefon 
+        //}).ToList();
 
-        [Route("api/hastane/hastanegetir/{id}")]
-        [HttpGet]
-        public Hospital HastaneGetir(int id) => db.Hastaneler.Select(hastane => new Hospital
-        {
-            Id = hastane.Id,
-            Ad = hastane.Ad
-        }).FirstOrDefault(x => x.Id == id);
+        //[Route("api/hastane/hastanegetir/{id}")]
+        //[HttpGet]
+        //public Hospital HastaneGetir(int id) => db.Hastaneler.Select(hastane => new Hospital
+        //{
+        //    Id = hastane.Id,
+        //    Ad = hastane.Ad
+        //}).FirstOrDefault(x => x.Id == id);
     }
 }
