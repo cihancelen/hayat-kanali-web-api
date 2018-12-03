@@ -29,6 +29,7 @@ namespace HayatKanali.Models.ORM
         [StringLength(10)]
         public string Telefon { get; set; }
 
+        [Required]
         [StringLength(250)]
         public string Konum { get; set; }
 
@@ -41,7 +42,7 @@ namespace HayatKanali.Models.ORM
         [StringLength(150)]
         public string Mail { get; set; }
 
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
 
         [StringLength(250)]
         public string District { get; set; }

@@ -174,6 +174,7 @@
     <Compile Include="App_Start\ProviderAuthorization.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\OpenController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Helpers\Crypto.cs" />
     <Compile Include="Models\DAL\BloodGroup.cs" />
     <Compile Include="Models\DAL\Diseases.cs" />
+    <Compile Include="Models\DAL\Employee.cs" />
     <Compile Include="Models\DAL\Hospital.cs" />
     <Compile Include="Models\DAL\User.cs" />
     <Compile Include="Models\ORM\Doktorlar.cs" />
@@ -197,10 +199,10 @@
     <Compile Include="Models\ORM\KanGruplari.cs" />
     <Compile Include="Models\ORM\KanTalepleri.cs" />
     <Compile Include="Models\ORM\Klinikler.cs" />
-    <Compile Include="Models\ORM\KullaniciKalitsalHastalik.cs" />
+    <Compile Include="Models\ORM\KullaniciHastalik.cs" />
     <Compile Include="Models\ORM\Kullanicilar.cs" />
+    <Compile Include="Models\ORM\KullaniciTalep.cs" />
     <Compile Include="Models\ORM\Personeller.cs" />
-    <Compile Include="Models\ORM\sysdiagrams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

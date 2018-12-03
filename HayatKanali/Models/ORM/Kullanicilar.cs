@@ -12,7 +12,8 @@ namespace HayatKanali.Models.ORM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kullanicilar()
         {
-            KullaniciKalitsalHastalik = new HashSet<KullaniciKalitsalHastalik>();
+            KullaniciHastalik = new HashSet<KullaniciHastalik>();
+            KullaniciTalep = new HashSet<KullaniciTalep>();
         }
 
         public int Id { get; set; }
@@ -26,14 +27,14 @@ namespace HayatKanali.Models.ORM
         [StringLength(50)]
         public string Soyad { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
         public string Telefon { get; set; }
 
         [StringLength(100)]
         public string Mail { get; set; }
-        
+
         [Column(TypeName = "date")]
-        public DateTime? DogumTarihi { get; set; }
+        public DateTime DogumTarihi { get; set; }
 
         [StringLength(50)]
         public string Parola { get; set; }
@@ -44,13 +45,17 @@ namespace HayatKanali.Models.ORM
 
         public int? KanGrubuId { get; set; }
 
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
 
+        [StringLength(250)]
         public string District { get; set; }
 
         public virtual KanGruplari KanGruplari { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KullaniciKalitsalHastalik> KullaniciKalitsalHastalik { get; set; }
+        public virtual ICollection<KullaniciHastalik> KullaniciHastalik { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KullaniciTalep> KullaniciTalep { get; set; }
     }
 }

@@ -22,10 +22,10 @@ namespace HayatKanali.Models.ORM
         public virtual DbSet<KanGruplari> KanGruplari { get; set; }
         public virtual DbSet<KanTalepleri> KanTalepleri { get; set; }
         public virtual DbSet<Klinikler> Klinikler { get; set; }
-        public virtual DbSet<KullaniciKalitsalHastalik> KullaniciKalitsalHastalik { get; set; }
+        public virtual DbSet<KullaniciHastalik> KullaniciHastalik { get; set; }
         public virtual DbSet<Kullanicilar> Kullanicilar { get; set; }
+        public virtual DbSet<KullaniciTalep> KullaniciTalep { get; set; }
         public virtual DbSet<Personeller> Personeller { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -94,9 +94,9 @@ namespace HayatKanali.Models.ORM
                 .HasForeignKey(e => e.HastaYakiniId);
 
             modelBuilder.Entity<KalitsalHastaliklar>()
-                .HasMany(e => e.KullaniciKalitsalHastalik)
+                .HasMany(e => e.KullaniciHastalik)
                 .WithOptional(e => e.KalitsalHastaliklar)
-                .HasForeignKey(e => e.KalitsalHastalikId);
+                .HasForeignKey(e => e.HastalikId);
 
             modelBuilder.Entity<KanGruplari>()
                 .Property(e => e.KanGrubu)
@@ -118,6 +118,11 @@ namespace HayatKanali.Models.ORM
                 .WithOptional(e => e.KanGruplari)
                 .HasForeignKey(e => e.KanGrubuId);
 
+            modelBuilder.Entity<KanTalepleri>()
+                .HasMany(e => e.KullaniciTalep)
+                .WithOptional(e => e.KanTalepleri)
+                .HasForeignKey(e => e.TalepId);
+
             modelBuilder.Entity<Klinikler>()
                 .HasMany(e => e.HastaneKlinik)
                 .WithOptional(e => e.Klinikler)
@@ -134,9 +139,15 @@ namespace HayatKanali.Models.ORM
                 .IsUnicode(false);
 
             modelBuilder.Entity<Kullanicilar>()
-                .HasMany(e => e.KullaniciKalitsalHastalik)
+                .HasMany(e => e.KullaniciHastalik)
                 .WithOptional(e => e.Kullanicilar)
                 .HasForeignKey(e => e.KullaniciId);
+
+            modelBuilder.Entity<Kullanicilar>()
+                .HasMany(e => e.KullaniciTalep)
+                .WithRequired(e => e.Kullanicilar)
+                .HasForeignKey(e => e.KullaniciId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Personeller>()
                 .HasMany(e => e.KanTalepleri)

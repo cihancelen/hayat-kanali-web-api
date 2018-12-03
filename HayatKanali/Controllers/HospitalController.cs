@@ -9,9 +9,32 @@ using System.Web.Http;
 
 namespace HayatKanali.Controllers
 {
-    [Authorize]
     public class HospitalController : ApiController
     {
+        [HttpPost]
+        [Route("api/hospital/hospitalInfo")]
+        public HttpResponseMessage UserInfo([FromBody] Hospital h)
+        {
+            using (HayatKanaliDB db = new HayatKanaliDB())
+            {
+                Hospital hospital = db.Hastaneler.Select(x => new Hospital()
+                {
+                    Id = x.Id,
+                    Address = x.Adres,
+                    CityId = x.CityId,
+                    District = x.District,
+                    Email = x.Mail,
+                    Location = x.Konum,
+                    Name = x.Ad,
+                    Phone = x.Telefon,
+                    Username = x.KullaniciAdi
+                }).FirstOrDefault(x => x.Email == h.Email);
+
+                return Request.CreateResponse(HttpStatusCode.Accepted, hospital);
+            }
+
+        }
+
         //HayatKanaliDB db = new HayatKanaliDB();
 
         //[Route("api/hastane/hastanegetir")]

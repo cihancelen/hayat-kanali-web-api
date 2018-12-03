@@ -12,7 +12,7 @@ namespace HayatKanali.Models.ORM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KalitsalHastaliklar()
         {
-            KullaniciKalitsalHastalik = new HashSet<KullaniciKalitsalHastalik>();
+            KullaniciHastalik = new HashSet<KullaniciHastalik>();
         }
 
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace HayatKanali.Models.ORM
         public string HastalikAdi { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KullaniciKalitsalHastalik> KullaniciKalitsalHastalik { get; set; }
+        public virtual ICollection<KullaniciHastalik> KullaniciHastalik { get; set; }
     }
 }

@@ -14,5 +14,7 @@ namespace HayatKanali.Models.DAL
         public string Location { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
+        public int? CityId { get; set; }
+        public string District { get; set; }
     }
 }

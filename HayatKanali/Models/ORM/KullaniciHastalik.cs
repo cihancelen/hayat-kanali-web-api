@@ -6,14 +6,14 @@ namespace HayatKanali.Models.ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("KullaniciKalitsalHastalik")]
-    public partial class KullaniciKalitsalHastalik
+    [Table("KullaniciHastalik")]
+    public partial class KullaniciHastalik
     {
         public int Id { get; set; }
 
-        public int? KalitsalHastalikId { get; set; }
-
         public int? KullaniciId { get; set; }
+
+        public int? HastalikId { get; set; }
 
         public virtual KalitsalHastaliklar KalitsalHastaliklar { get; set; }
 

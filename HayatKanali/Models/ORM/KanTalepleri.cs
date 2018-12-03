@@ -9,6 +9,12 @@ namespace HayatKanali.Models.ORM
     [Table("KanTalepleri")]
     public partial class KanTalepleri
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KanTalepleri()
+        {
+            KullaniciTalep = new HashSet<KullaniciTalep>();
+        }
+
         public int Id { get; set; }
 
         [StringLength(500)]
@@ -17,6 +23,10 @@ namespace HayatKanali.Models.ORM
         public int? HastaId { get; set; }
 
         public int? KanGrupId { get; set; }
+
+        public int? BeklenenUnite { get; set; }
+
+        public int? TeminEdilenUniteAdet { get; set; }
 
         public int? UniteAdet { get; set; }
 
@@ -29,5 +39,8 @@ namespace HayatKanali.Models.ORM
         public virtual KanGruplari KanGruplari { get; set; }
 
         public virtual Personeller Personeller { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KullaniciTalep> KullaniciTalep { get; set; }
     }
 }

@@ -41,22 +41,30 @@ namespace HayatKanali.Controllers
                 };
 
                 db.Kullanicilar.Add(u);
-                db.SaveChanges();
 
-                int count = user.Diseases.Count();
-
-                if (count > 1)
+                try
                 {
-                    foreach (var item in user.Diseases)
-                    {
-                        db.KullaniciKalitsalHastalik.Add(new KullaniciKalitsalHastalik()
-                        {
-                            KalitsalHastalikId = (int)item,
-                            KullaniciId = u.Id
-                        });
-
-                    }
+                    db.SaveChanges();
                 }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+
+                //int count = user.Diseases.Count();
+
+                //if (count > 1)
+                //{
+                //    foreach (var item in user.Diseases)
+                //    {
+                //        db.KullaniciKalitsalHastalik.Add(new KullaniciKalitsalHastalik()
+                //        {
+                //            KalitsalHastalikId = (int)item,
+                //            KullaniciId = u.Id
+                //        });
+
+                //    }
+                //}
 
                 var user_bloodGroup = db.KanGruplari.FirstOrDefault(x => x.Id == u.KanGrubuId).KanGrubu;
 
@@ -81,6 +89,30 @@ namespace HayatKanali.Controllers
             }
 
             return Request.CreateErrorResponse(HttpStatusCode.Conflict, "Bu email ile daha önce kayıt olunmuştur.");
+        }
+
+        [HttpPost]
+        [Route("api/auth/userInfo")]
+        public HttpResponseMessage UserInfo(string email)
+        {
+            User user = db.Kullanicilar.Select(x => new User()
+            {
+                Id = x.Id,
+                Name = x.Ad,
+                Surname = x.Soyad,
+                Birthday = x.DogumTarihi,
+                BloodGroupId = x.KanGrubuId,
+                CityId = x.CityId,
+                District = x.District,
+                Email = x.Mail,
+                IdentificationNo = x.TcKimlik,
+                LastBloodDonation = x.SonKanVermeTarihi,
+                Phone = x.Telefon,
+                UsingSmokingAndAlcohol = x.SigaraAlkolKullanimi,
+                BloodGroup = db.KanGruplari.FirstOrDefault(k => k.Id == x.KanGrubuId).KanGrubu
+            }).FirstOrDefault(x => x.Email == email);
+
+            return Request.CreateResponse(HttpStatusCode.Accepted, user);
         }
     }
 }
