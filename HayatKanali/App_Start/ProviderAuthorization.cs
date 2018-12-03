@@ -32,8 +32,6 @@ namespace HayatKanali.App_Start
 
                 if (login_type == "default-user")
                 {
-                    var users = db.Kullanicilar.ToList();
-
                     if (db.Kullanicilar.Where(user => user.Mail == context.UserName && user.Parola == pass).FirstOrDefault() != null)
                     {
                         ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
@@ -49,9 +47,7 @@ namespace HayatKanali.App_Start
                 }
                 else if (login_type == "hospital")
                 {
-                    var hospitals = db.Hastaneler.ToList();
-
-                    if (db.Hastaneler.Where(user => user.Mail == context.UserName && user.Parola == pass).FirstOrDefault() != null)
+                    if(db.Hastaneler.Where(hos => hos.Mail == context.UserName && hos.Parola == pass).FirstOrDefault() != null)
                     {
                         ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
                         identity.AddClaim(new Claim("sub", context.UserName));
@@ -66,8 +62,6 @@ namespace HayatKanali.App_Start
                 }
                 else if (login_type == "employee")
                 {
-                    var employees = db.Personeller.ToList();
-
                     if (db.Personeller.Where(user => user.Mail == context.UserName && user.Parola == pass).FirstOrDefault() != null)
                     {
                         ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
