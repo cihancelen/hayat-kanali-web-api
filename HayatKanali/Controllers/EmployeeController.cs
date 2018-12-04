@@ -30,5 +30,28 @@ namespace HayatKanali.Controllers
                 return Request.CreateResponse(HttpStatusCode.Accepted, employee);
             }
         }
+
+        [HttpPost]
+        [Route("api/employee/addEmployee")]
+        public HttpResponseMessage AddEmployee(Employee employee)
+        {
+            using (HayatKanaliDB db = new HayatKanaliDB())
+            {
+                Personeller p = new Personeller()
+                {
+                    Ad = employee.Name,
+                    Soyad = employee.Surname,
+                    KullaniciAdi = employee.Username,
+                    Mail = employee.Email,
+                    Parola = employee.Password,
+                    HastaneId = employee.HospitalId
+                };
+
+                db.Personeller.Add(p);
+                db.SaveChanges();
+
+                return Request.CreateResponse(HttpStatusCode.Created, employee);
+            }
+        }
     }
 }
