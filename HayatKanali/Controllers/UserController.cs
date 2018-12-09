@@ -38,5 +38,29 @@ namespace HayatKanali.Controllers
             }
 
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetBloodRequestsByUser(int id)
+        {
+            using (HayatKanaliDB db = new HayatKanaliDB())
+            {
+                var user = db.Kullanicilar.FirstOrDefault(x => x.Id == id);
+
+                var s = (from talep in db.KanTalepleri
+                        join hastalar in db.Hastalar on talep.HastaId equals hastalar.Id
+                        join hastaneler in db.Hastaneler on hastalar.HastaneId equals hastaneler.Id
+                        where hastaneler.District == user.District
+                        select new
+                        {
+                            RequestId = talep.Id,
+                            PatientId = hastalar.Id,
+                            PatientName = hastaneler.Ad
+                        }).ToList();
+
+
+                return Request.CreateResponse(HttpStatusCode.OK, s);
+            }
+        }
+
     }
 }

@@ -13,7 +13,7 @@ namespace HayatKanali.Controllers
     {
         [HttpPost]
         [Route("api/hospital/hospitalInfo")]
-        public HttpResponseMessage UserInfo([FromBody] Hospital h)
+        public HttpResponseMessage HospitalInfo([FromBody] Hospital h)
         {
             using (HayatKanaliDB db = new HayatKanaliDB())
             {
@@ -35,26 +35,25 @@ namespace HayatKanali.Controllers
 
         }
 
-        //HayatKanaliDB db = new HayatKanaliDB();
+        [HttpGet]
+        public HttpResponseMessage GetDoctorsByHosptial(int id)
+        {
+            using (HayatKanaliDB db = new HayatKanaliDB())
+            {
+                IEnumerable<Doctor> doctors = db.Doktorlar.Where(x => x.HastaneId == id).Select(d => new Doctor()
+                {
+                    Id = d.Id,
+                    Email = d.Mail,
+                    HospitalId = d.HastaneId,
+                    Name = d.Ad,
+                    Phone = d.Telefon,
+                    Surname = d.Soyad
+                }).ToList();
 
-        //[Route("api/hastane/hastanegetir")]
-        //[HttpGet]
-        //public IEnumerable<Hospital> HastaneleriGetir() => db.Hastaneler.Select(hastane => new Hospital
-        //{
-        //    Id = hastane.Id,
-        //    Ad = hastane.Ad,
-        //    Adres = hastane.Adres,
-        //    KullaniciAdi = hastane.KullaniciAdi,
-        //    Mail = hastane.Mail,
-        //    Telefon = hastane.Telefon 
-        //}).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, doctors);
+            }
+        }
 
-        //[Route("api/hastane/hastanegetir/{id}")]
-        //[HttpGet]
-        //public Hospital HastaneGetir(int id) => db.Hastaneler.Select(hastane => new Hospital
-        //{
-        //    Id = hastane.Id,
-        //    Ad = hastane.Ad
-        //}).FirstOrDefault(x => x.Id == id);
+        
     }
 }

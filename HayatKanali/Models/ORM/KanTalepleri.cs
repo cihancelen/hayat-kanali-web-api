@@ -30,6 +30,7 @@ namespace HayatKanali.Models.ORM
 
         public int? UniteAdet { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime? TalepTarihi { get; set; }
 
         public int? PersonelId { get; set; }

@@ -32,6 +32,9 @@ namespace HayatKanali.Models.ORM
         [StringLength(100)]
         public string Mail { get; set; }
 
+        [StringLength(10)]
+        public string Cinsiyet { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? DogumTarihi { get; set; }
 

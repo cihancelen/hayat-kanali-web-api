@@ -38,6 +38,8 @@ namespace HayatKanali.Models.ORM
         [StringLength(500)]
         public string Hastalik { get; set; }
 
+        public string Cinsiyet { get; set; }
+
         public int? HastaYakiniId { get; set; }
 
         public int? KanGrubuId { get; set; }

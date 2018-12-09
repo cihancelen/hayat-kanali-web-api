@@ -174,21 +174,27 @@
     <Compile Include="App_Start\ProviderAuthorization.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BloodController.cs" />
     <Compile Include="Controllers\ClinicController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\OpenController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Crypto.cs" />
     <Compile Include="Models\DAL\BloodGroup.cs" />
+    <Compile Include="Models\DAL\BloodRequest.cs" />
     <Compile Include="Models\DAL\Clinic.cs" />
     <Compile Include="Models\DAL\Diseases.cs" />
+    <Compile Include="Models\DAL\Doctor.cs" />
     <Compile Include="Models\DAL\Employee.cs" />
     <Compile Include="Models\DAL\Hospital.cs" />
+    <Compile Include="Models\DAL\Patient.cs" />
+    <Compile Include="Models\DAL\Relative.cs" />
     <Compile Include="Models\DAL\User.cs" />
     <Compile Include="Models\ORM\Doktorlar.cs" />
     <Compile Include="Models\ORM\GenelAdmin.cs" />
