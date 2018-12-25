@@ -32,47 +32,66 @@ namespace HayatKanali.App_Start
 
                 if (login_type == "default-user")
                 {
-                    if (db.Kullanicilar.Where(user => user.Mail == context.UserName && user.Parola == pass).FirstOrDefault() != null)
+                    if (db.Kullanicilar.Where(user => user.Mail == context.UserName).FirstOrDefault() != null)
                     {
-                        ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
-                        identity.AddClaim(new Claim("sub", context.UserName));
-                        identity.AddClaim(new Claim("role", "user"));
-
-                        context.Validated(identity);
+                        if (db.Kullanicilar.Where(user => user.Parola == pass).FirstOrDefault() != null)
+                        {
+                            ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                            identity.AddClaim(new Claim("sub", context.UserName));
+                            identity.AddClaim(new Claim("role", "user"));
+                            context.Validated(identity);
+                        }
+                        else
+                        {
+                            context.SetError("Wrong Pass", "Parola hatalıdır.");
+                        }
                     }
                     else
                     {
-                        context.SetError("hata", "Kullanıcı adı veya şifre hatalı.");
+                        context.SetError("Not Found User", "Böyle bir kullanıcı kaydı bulunamadı.");
                     }
                 }
                 else if (login_type == "hospital")
                 {
-                    if(db.Hastaneler.Where(hos => hos.Mail == context.UserName && hos.Parola == pass).FirstOrDefault() != null)
+                    if (db.Hastaneler.Where(hos => hos.Mail == context.UserName).FirstOrDefault() != null)
                     {
-                        ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
-                        identity.AddClaim(new Claim("sub", context.UserName));
-                        identity.AddClaim(new Claim("role", "user"));
-
-                        context.Validated(identity);
+                        if (db.Hastaneler.Where(hos => hos.Parola == pass).FirstOrDefault() != null)
+                        {
+                            ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                            identity.AddClaim(new Claim("sub", context.UserName));
+                            identity.AddClaim(new Claim("role", "user"));
+                            context.Validated(identity);
+                        }
+                        else
+                        {
+                            context.SetError("Wrong Pass", "Parola hatalıdır.");
+                        }
                     }
                     else
                     {
-                        context.SetError("hata", "Kullanıcı adı veya şifre hatalı.");
+                        context.SetError("Not Found Hospital", "Böyle bir hastane kaydı bulunamadı.");
                     }
                 }
                 else if (login_type == "employee")
                 {
                     if (db.Personeller.Where(user => user.Mail == context.UserName && user.Parola == pass).FirstOrDefault() != null)
                     {
-                        ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
-                        identity.AddClaim(new Claim("sub", context.UserName));
-                        identity.AddClaim(new Claim("role", "user"));
+                        if (db.Personeller.Where(per => per.Parola == pass).FirstOrDefault() != null)
+                        {
+                            ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                            identity.AddClaim(new Claim("sub", context.UserName));
+                            identity.AddClaim(new Claim("role", "user"));
 
-                        context.Validated(identity);
+                            context.Validated(identity);
+                        }
+                        else
+                        {
+                            context.SetError("Wrong Pass", "Parola hatalıdır.");
+                        }
                     }
                     else
                     {
-                        context.SetError("hata", "Kullanıcı adı veya şifre hatalı.");
+                        context.SetError("Not Found Employee", "Böyle bir personel kaydı bulunamadı.");
                     }
                 }
 

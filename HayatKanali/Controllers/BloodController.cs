@@ -22,6 +22,8 @@ namespace HayatKanali.Controllers
                 TalepAciklama = request.Description,
                 TalepTarihi = DateTime.Now,
                 UniteAdet = request.UnitQuantity,
+                BeklenenUnite = request.WaitingUnit,
+                TeminEdilenUniteAdet = request.SuppliedUnit
             };
 
             using (HayatKanaliDB db = new HayatKanaliDB())
