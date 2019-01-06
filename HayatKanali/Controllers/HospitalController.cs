@@ -1,6 +1,5 @@
 ﻿using HayatKanali.Models.DAL;
 using HayatKanali.Models.ORM;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +8,7 @@ using System.Web.Http;
 
 namespace HayatKanali.Controllers
 {
+    [Authorize]
     public class HospitalController : ApiController
     {
         [HttpPost]

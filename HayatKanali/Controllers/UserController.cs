@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace HayatKanali.Controllers
 {
+    [Authorize]
     public class UserController : ApiController
     {
         [HttpPost]
