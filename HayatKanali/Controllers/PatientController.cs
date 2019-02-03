@@ -9,7 +9,6 @@ using System.Web.Http;
 
 namespace HayatKanali.Controllers
 {
-    [Authorize]
     public class PatientController : ApiController
     {
         [HttpGet]
@@ -38,7 +37,7 @@ namespace HayatKanali.Controllers
                 if (patients.Count() > 0)
                     return Request.CreateResponse(HttpStatusCode.OK, patients);
                 else
-                    return Request.CreateResponse(HttpStatusCode.NotAcceptable);
+                    return Request.CreateResponse(HttpStatusCode.NotAcceptable, patients);
             }
         }
 
@@ -114,7 +113,7 @@ namespace HayatKanali.Controllers
                 HastaYakinlari h = new HastaYakinlari()
                 {
                     Ad = r.Name,
-                    Cinsiyet =r.Gender,
+                    Cinsiyet = r.Gender,
                     DogumTarihi = r.Birthday,
                     Mail = r.Email,
                     Soyad = r.Surname,
@@ -130,14 +129,14 @@ namespace HayatKanali.Controllers
 
                     var relative = db.HastaYakinlari.Select(x => new Relative()
                     {
-                         Id = x.Id,
-                         Birthday = x.DogumTarihi,
-                         Email = x.Mail,
-                         Gender = x.Cinsiyet,
-                         IdentificationNo = x.TcKimlik,
-                         Name = x.Ad,
-                         Phone = x.Telefon,
-                         Surname = x.Soyad
+                        Id = x.Id,
+                        Birthday = x.DogumTarihi,
+                        Email = x.Mail,
+                        Gender = x.Cinsiyet,
+                        IdentificationNo = x.TcKimlik,
+                        Name = x.Ad,
+                        Phone = x.Telefon,
+                        Surname = x.Soyad
                     }).FirstOrDefault();
 
                     return Request.CreateResponse(HttpStatusCode.Created, relative);

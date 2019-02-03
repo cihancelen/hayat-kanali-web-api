@@ -8,7 +8,6 @@ using System.Web.Http;
 
 namespace HayatKanali.Controllers
 {
-    [Authorize]
     public class HospitalController : ApiController
     {
         [HttpPost]

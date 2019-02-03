@@ -1,8 +1,6 @@
 ﻿using HayatKanali.Models.DAL;
 using HayatKanali.Models.ORM;
-using Microsoft.Owin;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -50,21 +48,6 @@ namespace HayatKanali.Controllers
                 {
                     throw e;
                 }
-
-                //int count = user.Diseases.Count();
-
-                //if (count > 1)
-                //{
-                //    foreach (var item in user.Diseases)
-                //    {
-                //        db.KullaniciKalitsalHastalik.Add(new KullaniciKalitsalHastalik()
-                //        {
-                //            KalitsalHastalikId = (int)item,
-                //            KullaniciId = u.Id
-                //        });
-
-                //    }
-                //}
 
                 var user_bloodGroup = db.KanGruplari.FirstOrDefault(x => x.Id == u.KanGrubuId).KanGrubu;
 
