@@ -41,7 +41,7 @@ namespace HayatKanali.Models.ORM
 
         public bool? SigaraAlkolKullanimi { get; set; }
 
-        public DateTime SonKanVermeTarihi { get; set; }
+        public DateTime? SonKanVermeTarihi { get; set; }
 
         public int? KanGrubuId { get; set; }
 

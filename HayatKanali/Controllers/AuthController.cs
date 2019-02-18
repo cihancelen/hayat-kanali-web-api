@@ -49,7 +49,10 @@ namespace HayatKanali.Controllers
                     throw e;
                 }
 
-                var user_bloodGroup = db.KanGruplari.FirstOrDefault(x => x.Id == u.KanGrubuId).KanGrubu;
+                string user_bloodGroup = "";
+
+                if (u.KanGrubuId != null)
+                    user_bloodGroup = db.KanGruplari.FirstOrDefault(x => x.Id == u.KanGrubuId).KanGrubu;
 
                 User added_user = new User()
                 {
@@ -63,7 +66,7 @@ namespace HayatKanali.Controllers
                     IdentificationNo = u.TcKimlik,
                     Phone = u.Telefon,
                     BloodGroupId = u.KanGrubuId,
-                    BloodGroup = user_bloodGroup,
+                    BloodGroup = user_bloodGroup.Length > 0 ? user_bloodGroup : null,
                     CityId = u.CityId,
                     District = u.District
                 };

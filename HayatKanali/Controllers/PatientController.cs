@@ -16,7 +16,7 @@ namespace HayatKanali.Controllers
         {
             using (HayatKanaliDB db = new HayatKanaliDB())
             {
-                IEnumerable<Patient> patients = db.Hastalar.Where(x => x.HastaneId == id).Select(p => new Patient()
+                List<Patient> patients = db.Hastalar.Where(x => x.HastaneId == id).Select(p => new Patient()
                 {
                     Id = p.Id,
                     Birthday = p.DogumTarihi,

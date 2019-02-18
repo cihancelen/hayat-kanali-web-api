@@ -13,7 +13,7 @@ namespace HayatKanali.Models.DAL
         public string Email { get; set; }
         public DateTime Birthday { get; set; }
         public bool? UsingSmokingAndAlcohol { get; set; }
-        public DateTime LastBloodDonation { get; set; }
+        public DateTime? LastBloodDonation { get; set; }
         public int? BloodGroupId { get; set; }
         public string BloodGroup { get; set; }
         public int? CityId { get; set; }
